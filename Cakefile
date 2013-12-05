@@ -10,13 +10,9 @@ global.PATH=
 require 'shelljs/global'
 require "#{ PATH.LIB }/build-helpers"
 
+task 'init', 'Initial setup', ->
+  exec 'cake fonts:bootstrap'
+  exec 'cake fonts:font-awesome'
+
 # Auto load tasks from lib/tasks...
 require "./#{ taskfile.replace(/\.coffee$/, '') }" for taskfile in ls "#{ PATH.TASKS }/*.coffee"
-
-
-# bold = red = green = reset = ''
-# unless process.env.NODE_DISABLE_COLORS
-#   bold  = '\x1B[0;1m'
-#   red   = '\x1B[0;31m'
-#   green = '\x1B[0;32m'
-#   reset = '\x1B[0m'

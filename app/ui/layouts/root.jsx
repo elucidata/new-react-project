@@ -10,6 +10,13 @@ module.exports= React.createClass({
     return this.props.appState;
   },
 
+  componentDidMount: function () {
+    $('a').tooltip({
+      placement: 'bottom',
+      container: 'body'
+    })
+  },
+
   render: function() {
     var page;
     // if(!this.state.loggedIn) 
@@ -27,7 +34,7 @@ module.exports= React.createClass({
           <div className="page-header">
             <div className="btn-group btn-group-sm pull-right">
               <a className={this.navClasses('home')} href="#/">Home</a>
-              <a className={this.navClasses('missing')} href="#/junk">Junk</a>
+              <a title="This should trigger the 404 handler..." className={this.navClasses('missing')} href="#/junk">Junk</a>
             </div>
             <h1>{this.state.title} <small className="app-version"> v{this.state.version}</small></h1>
           </div>

@@ -6,14 +6,15 @@ New brunch project for use with React.js
 
 Default cake tasks:
 
+    cake init                 # Initial setup
     cake build                # Builds the app into ./public
     cake build:optimize       # Builds optimized app into ./public
     cake build:watch          # Watch ./app and autobuild to ./public on change
     cake build:server         # Starts dev server
     cake clean                # Removes ./public
     cake docs                 # Build API docs
-    cake fonts:bs             # Copy Bootstrap fonts to app/assets/fonts/
-    cake fonts:fa             # Copy FontAwesome fonts to app/assets/fonts/
+    cake fonts:bootstrap      # Copy Bootstrap fonts to app/assets/fonts/
+    cake fonts:font-awesome   # Copy FontAwesome fonts to app/assets/fonts/
     cake notes                # Show all annotations in source
     cake notes:todo           # Show 'TODO:' annotations in source
     cake notes:fixme          # Show 'FIXME:' annotations in source
