@@ -11,6 +11,8 @@ require 'shelljs/global'
 require "#{ PATH.LIB }/build-helpers"
 
 task 'init', 'Initial setup', ->
+  exec 'npm install'
+  exec 'bower install'
   exec 'cake fonts:bootstrap'
   exec 'cake fonts:font-awesome'
 
