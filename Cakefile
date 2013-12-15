@@ -13,8 +13,8 @@ require "#{ PATH.LIB }/build-helpers"
 task 'init', 'Initial setup', ->
   exec 'npm install'
   exec 'bower install'
-  exec 'cake fonts:bootstrap'
-  exec 'cake fonts:font-awesome'
+  invoke 'fonts:bootstrap'
+  invoke 'fonts:font-awesome'
 
 # Auto load tasks from lib/tasks...
 require "./#{ taskfile.replace(/\.coffee$/, '') }" for taskfile in ls "#{ PATH.TASKS }/*.coffee"

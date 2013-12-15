@@ -25,6 +25,11 @@ exports.config =
     templates:
       joinTo: 'javascripts/app.js'
 
+  server:
+    path: "./lib/proxy-server.js"
+    # port: 8080
+    run: true
+
   plugins:
     react:
       autoIncludeCommentBlock: yes
