@@ -57,6 +57,7 @@ module.exports= class Model extends Giraffe.Model
                         false: Reads and writes are allowed.
   ###
   @attr: (name, options={}) ->
+    (@attributes or= {})[name]= options
     method_name= options.alias or name
     if options.default? 
       (@::defaults ?= {})[name]= options.default
