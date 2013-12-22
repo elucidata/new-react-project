@@ -26,4 +26,3 @@ Default cake tasks:
     cake version:update       # Updates all the files that contain version info
 
       -f, --force        (ver) Force updating for version files
-

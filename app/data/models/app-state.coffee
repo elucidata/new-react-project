@@ -7,6 +7,7 @@ _cache= new Cache 'my-app-state'
 module.exports= class AppState extends Model
   @attr 'currentPage', default:'home', transient:yes
   @attr 'version', default:VERSION, readonly:yes
+  @attr 'title', default:'Untitled', readonly:yes
 
   constructor: ->
     attrs= {}

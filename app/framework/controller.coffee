@@ -1,60 +1,71 @@
 
+bindAppEvents= (obj, app)->
+  # console.log "bindAppEvents"
+  return unless obj.appEvents?
+  # console.log " - here we go!"
+  for own event, method of obj.appEvents
+    fn= if _.isString(method)
+      obj[method]
+    else if _.isFunction(method)
+      method
+    else
+      throw new Error "Event handler must be a String or Function (for event: #{event})"
+    throw new Error "Event handler not found (for event: #{event})" unless fn?
+    # console.log " .", event, fn #, app
+    app.on(event,fn)
+  @
+
+
+unbindAppEvents= (obj, app)->
+  return unless obj.appEvents?
+  for own event, method of obj.appEvents
+    fn= if _.isString(method)
+      obj[method]
+    else if _.isFunction(method)
+      method
+    app.off(event,fn)
+  @
+
+bindRouteEvents= (obj)->
+  return unless obj.routes?
+  obj.router or= new Backbone.Router
+  for own route, event of obj.routes
+    do (route, event)->
+      obj.router.route route, event, (params...)->
+        obj.trigger event, params...
+  @
+
 ###
   Class: Controller
-  Extends <Giraffe.Contrib.Controller>
-
+  
   Methods:
-
-    initalize - stuff
+    
+    initialize - do you thing here
+    dispose - stuff
 
   Variables:
 
-    events - dom event hash { "click .selector": "method_name" }
     appEvents - <App> events hash { "app:event": "method_name" }
-    ui - dom select varname hash { varname:".selector" } -- Creates a this.varname from $('.selector')
+    routes - Route hash
 
 ###
-module.exports= class Controller extends Giraffe.Contrib.Controller
-
-  # Method: constructor
-  constructor: ->
-    super
-    @initialize?(arguments...)
-
-  dispose: ->
-    Giraffe.dispose @
-
-
-
-
-return
 module.exports= class Controller
   _.extend @::, Backbone.Events  
   
   appEvents: null
+  routes: null
   
   constructor: (options={})->
     _.extend @, options
-    @app ?= Giraffe.app
-    @children ?= []
-    @parent ?= null
+    @app ?= window.app 
+    unless @app?
+      App= require('./application')
+      @app= App.instance
     @initialize?(options)
-    @app?.addChild this unless @parent?
-    Giraffe.bindEventMap @, @app, @appEvents
-    Giraffe.View::_bindDataEvents.call this
-    
+    # @app?.addChild this unless @parent?
+    bindAppEvents(this, @app)
+    bindRouteEvents(@)    
+
   dispose: ->
-    Giraffe.dispose @, ->
-      @setParent null
-      @removeChildren()
-
-  # Pull some methods over from the View impl 
-  # so Controllers can be nested as well.
-  setParent: Giraffe.View::setParent
-  addChild: Giraffe.View::addChild
-  addChildren: Giraffe.View::addChildren
-  removeChild: Giraffe.View::removeChild
-  removeChildren: Giraffe.View::removeChildren
-  invoke: Giraffe.View::invoke
-
-
+    unbindAppEvents(this, @app)
+    

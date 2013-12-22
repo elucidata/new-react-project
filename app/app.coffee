@@ -1,4 +1,4 @@
-App= require 'framework/app'
+App= require 'framework/application'
 AppState= require 'data/models/app-state'
 
 # Class: Application
@@ -20,8 +20,9 @@ class Application extends App
     'app:initialized': 'app_onInit'
 
   initialize: ->
-    @state= new AppState { @title }
+    @state= new AppState
     @version= @state.version()
+    @title= @state.title()
 
   app_onInit: ->
     Root= require 'ui/layouts/root'
