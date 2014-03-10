@@ -15,9 +15,11 @@
 .cache
 .project
 .settings
+.tags
 .tmproj
 nbproject
 Thumbs.db
+tags
 
 # NPM packages folder.
 node_modules/

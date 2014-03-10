@@ -200,7 +200,7 @@ in conjunction with appEvents and your Collection class.
 
 Usage:
   (start code)
-  {Model, Collection, UndoManager}= require 'framework'
+  {Model, Collection, UndoManager}= require 'tools/framework'
 
   class Post extends Model
     @attr 'title', default:'Untitled'

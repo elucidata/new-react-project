@@ -33,3 +33,4 @@ exports.config =
   plugins:
     react:
       autoIncludeCommentBlock: yes
+      harmony: yes

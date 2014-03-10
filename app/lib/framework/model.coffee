@@ -1,7 +1,7 @@
 ###
   Class: Model
 
-  Extends <Giraffe.Model>
+  Extends <Backbone.Model>
 
   Usage:
 
@@ -17,7 +17,7 @@
   (end)
 
 ###
-module.exports= class Model extends Giraffe.Model
+module.exports= class Model extends Backbone.Model
 
   constructor: ->
     super

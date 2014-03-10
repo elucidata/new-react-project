@@ -1,4 +1,3 @@
-View= require 'framework/view'
 
 helpers= 
 
@@ -10,6 +9,10 @@ helpers=
 
   formatDate: (date, format='LL')->
     moment(date).format(format)
+
+  cancelEvent: (e)->
+    e?.preventDefault?()
+    false
 
   # Requires marked library: bower install marked --save 
   markdown: (args...)->
@@ -25,11 +28,18 @@ helpers=
       tables: yes
     @safe marked block(), opts
 
-
-
 applyTo= (target)->
   _.defaults(target, helpers)
 
-applyTo View::
-
 module.exports= {helpers, applyTo}
+
+
+React.Helpers= _.extend {}, React.addons,
+  _: null
+  __: null
+  nbsp: '\u00a0'
+  _nbsp: '\u00a0'
+  times: '\u00d7'
+  _times: '\u00d7'
+  copy: '\u00a9'
+  _copy: '\u00a9'

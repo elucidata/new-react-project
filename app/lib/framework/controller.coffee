@@ -5,7 +5,7 @@ bindAppEvents= (obj, app)->
   # console.log " - here we go!"
   for own event, method of obj.appEvents
     fn= if _.isString(method)
-      obj[method]
+      obj[method].bind obj
     else if _.isFunction(method)
       method
     else
@@ -14,7 +14,6 @@ bindAppEvents= (obj, app)->
     # console.log " .", event, fn #, app
     app.on(event,fn)
   @
-
 
 unbindAppEvents= (obj, app)->
   return unless obj.appEvents?
@@ -57,15 +56,22 @@ module.exports= class Controller
   
   constructor: (options={})->
     _.extend @, options
-    @app ?= window.app 
+    @app or= window.app 
     unless @app?
       App= require('./application')
       @app= App.instance
+    if @data?
+      for key,val of @data
+        @data[key]= @app.getCursor(val, yes) if _.isString val
     @initialize?(options)
     # @app?.addChild this unless @parent?
     bindAppEvents(this, @app)
     bindRouteEvents(@)    
 
+  one: @::once
+
   dispose: ->
     unbindAppEvents(this, @app)
-    
+    @data[key].dispose() for key,val of @data if @data?
+    @off()    
+

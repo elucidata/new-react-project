@@ -9,18 +9,21 @@
     "test": "brunch test"
   },
   "dependencies": {
-    "javascript-brunch": ">= 1.0 < 1.8",
-    "coffee-script-brunch": ">= 1.0 < 1.8",
-    "uglify-js-brunch": ">= 1.0 < 1.8",
-    "eco-brunch": "~1.7.1",
-    "css-brunch": ">= 1.0 < 1.8",
-    "stylus-brunch": ">= 1.0 < 1.8",
-    "clean-css-brunch": ">= 1.0 < 1.8",
-    "auto-reload-brunch": "~1.6.5",
+    "javascript-brunch": ">= 1.0 < 1.9",
+    "coffee-script-brunch": ">= 1.0 < 1.9",
+    "uglify-js-brunch": ">= 1.0 < 1.9",
+    "css-brunch": ">= 1.0 < 1.9",
+    "stylus-brunch": ">= 1.0 < 1.9",
+    "clean-css-brunch": ">= 1.0 < 1.9",
+    "auto-reload-brunch": "~1.7.3",
+    "json-brunch": "~1.5.4",
     "shelljs": "~0.1.4",
     "semver": "~2.0.9",
-    "react-brunch": "~1.0.3",
+    "react-brunch": "~1.0.5",
     "http-proxy": "~0.10.3",
-    "connect": "~2.12.0"
+    "connect": "~2.12.0",
+    "coffee-script": "~1.7.1",
+    "mocha": "~1.17.1",
+    "chai": "~1.9.0"
   }
 }

@@ -1,0 +1,104 @@
+@import 'nib'
+
+.docked-button-popover {
+
+  .popover-content {
+    padding: 0
+    .body {
+      padding: 9px 14px
+    }
+  }
+  .buttons {
+    // background: silver
+    // white-space: nowrap
+    margin: 0
+    padding: 1px
+
+    .btn-link + .btn-link {
+      border-left: 1px solid #DDD
+    }
+
+    .btn {
+      width: 49.9%
+      display: inline-block
+      padding: 8px 0px
+      border-radius: 0
+      // border-top: 1px solid #DDD
+      outline: 0
+
+      &.btn-link {
+        border-top: 1px solid #DDD
+      }
+
+      &:first-child {
+        border-radius: bottom left 4px
+      }
+
+      &:last-child {
+        // border-left: 1px solid #DDD
+        border-radius: bottom right 4px
+      }
+    }
+
+    &.three {
+      .btn {
+        width: 32.9% !important
+      }
+    }
+
+    &.one, &.single {
+      .btn {
+        width: 99.9% !important
+      }
+    }
+  }
+}
+
+.modal-header {
+  h4 {
+    margin: 0
+  }
+  .close {
+    // margin-top: 3px !important
+  }
+}
+
+.btn-hidden {
+  display: inline !important
+  visibility: hidden !important
+  width: 0px !important
+  height: 0px !important
+  margin: 0px !important
+  padding: 0px !important
+  overflow: hidden !important
+  border: 0px !important
+  outline: 0px !important
+  line-height: 0px !important
+  float: right 
+}
+
+.btn-link.bordered {
+  border: 1px solid silver
+  border-radius: 4px
+}
+
+.modal-footer {
+  .fx {
+    float: left
+  }
+  .alert {
+    padding: 6px
+    text-align: left
+    margin-bottom: 0px
+  }
+}
+
+.marginless-popover-content, .paddingless-popover-content {
+  .popover-content {
+    padding: 0
+    table {
+      margin-bottom: 0
+    }
+  }
+}
+

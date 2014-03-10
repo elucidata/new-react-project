@@ -1,7 +1,8 @@
 new-react-project
 =================
 
-New brunch project for use with React.js
+New brunch project for use with React.js. Includes react-brunch, coffee-script,
+bootstrap, jquery, backbone (for now), ogre-js.
 
 Default cake tasks:
 
@@ -26,3 +27,4 @@ Default cake tasks:
     cake version:update       # Updates all the files that contain version info
 
       -f, --force        (ver) Force updating for version files
+

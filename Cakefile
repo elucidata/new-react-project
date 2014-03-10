@@ -7,6 +7,7 @@ global.PATH=
   LIB:    "./lib"
   TASKS:  "./lib/tasks"
 
+require 'coffee-script/register'
 require 'shelljs/global'
 require "#{ PATH.LIB }/build-helpers"
 

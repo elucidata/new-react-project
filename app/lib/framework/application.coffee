@@ -1,5 +1,5 @@
 Controller= require './controller'
-UndoManager= require './undo-manager'
+# UndoManager= require './undo-manager'
 
 _patched= no
 
@@ -25,16 +25,16 @@ patchBackbone= ->
 
 # Class: App
 # Extends <Controller>
-module.exports= class Application extends Controller
+module.exports= class App extends Controller
   @instance: null
 
   constructor: ->
-    Application.instance= this
+    App.instance= this
     @app= this
     @_initializers = []
     @started = false
     # @navigator= new Navigator this
-    @undoMgr= new UndoManager
+    # @undoMgr= new UndoManager
     super
     patchBackbone()
     $(window).on('unload', @_windowOnUnload)
@@ -50,6 +50,9 @@ module.exports= class Application extends Controller
   start: (options={})->
     @_startOptions = options
     @trigger 'app:initializing', options
+
+    if @onStart?
+      @_initializers.unshift @onStart
 
     # Runs all sync/async initializers.
     next = (err) =>
@@ -67,25 +70,47 @@ module.exports= class Application extends Controller
         _.extend @, options
         @started = true
         @trigger 'app:initialized', options
+        # _.defer @trigger, 'app:ready', options
+        # @trigger 'app:ready', options
+        setTimeout @trigger.bind(this, 'app:ready', options), 0
 
     next()
     @
 
-  # # Method: navigateTo
-  # navigateTo: (params...)-> 
-  #   @navigator.go params...
+  origTrigger: @::trigger
+
+  # Method: navigate
+  navigate: (pathFragment, opts={})-> 
+    @router.navigate pathFragment, opts
+    #@navigator.go params...
+
+  # Method: navigateTo
+  # Same as navigate, but defaults to `trigger:true`
+  navigateTo: (pathFragment, opts={})-> 
+    @router.navigate pathFragment, _.defaults(opts, trigger:yes)
+
+  log: (args...)->
+    return unless @debug
+    console.debug args...
 
   # Method: logEvents
   # Log all app events
   #
-  # stop - Boolean. Defaults to false.
-  logEvents: (stop)->
-    if stop
-      @off 'all', @_logEvent
+  # listen - Boolean. Defaults to true.
+  logEvents: (listen=yes, skip...)->
+    @_skipEvents= skip
+    if listen
+      # @on 'all', @_logEvent
+      @trigger= (event, args...)=>
+        console.group event
+        @origTrigger event, args...
+        console.groupEnd event
     else
-      @on 'all', @_logEvent
+      @trigger= @origTrigger
+      # @off 'all', @_logEvent
 
-  _logEvent: (args...)-> console.debug 'app.event', args
+  _logEvent: (args...)=> 
+    console.debug 'app.event', args unless args[0] in @_skipEvents
 
   _windowOnUnload: =>
     $(window).off('unload', @_windowOnUnload)

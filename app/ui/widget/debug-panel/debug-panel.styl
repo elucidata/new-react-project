@@ -1,0 +1,109 @@
+@import 'nib'
+
+.debug-graph {
+
+  .listener-summary {
+    padding: 0
+    // font-size: 90%
+    background: transparent
+    border: 0
+    font-family: monaco, monospace
+    font-size: 12px
+  }
+
+  .no-children {
+    code {
+      cursor: default
+    }
+  }
+
+  .toggler {
+    display: inline-block
+    width: 1.2em
+    text-align: center
+  }
+
+  ul {
+    list-style: none
+    padding-left: 15px
+    // padding-left: 1em
+
+    li {
+      .props {
+        // outline: 1px solid red
+        display: inline-block
+        white-space: nowrap
+        overflow: ellipsis
+        max-width: 100%
+      }
+    
+      &.collapsed {
+        & > ul {
+          display: none 
+        }
+        .object, .array {
+          color: gray
+        }
+      }
+    }
+  }
+
+
+  code {
+    font-family: monaco, monospace
+    font-size: 12px
+    cursor: pointer
+    background: transparent
+    color: #400080
+    font-weight: normal
+    // font-size: 90%
+    padding: 0px !important
+    margin: 0
+    margin-right: 3px
+
+    &:after {
+      content: ":"
+      color: silver
+    }
+  }
+  label {
+    // margin-left: 15px
+    font-weight: normal
+    margin: 0
+    cursor: text
+
+    &.null {
+      color: pink
+      // font-style: italic
+      // &:after {
+      //   content: " "
+      // }
+    }
+    &.object {
+      color: #DDD
+      cursor: pointer
+    }
+    &.array {
+      color: #DDD
+      cursor: pointer
+    }
+    &.boolean {
+      color: #004080
+    }
+    &.number {
+      color: #008080
+    }
+    &.string {
+      color: #800000
+      &:before {
+        content: '"'
+        color: silver
+      }
+      &:after {
+        content: '"'
+        color: silver
+      }
+    }
+  }
+}
+

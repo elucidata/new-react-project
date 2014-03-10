@@ -2,6 +2,7 @@ Application= require './application'
 Collection= require './collection'
 Controller= require './controller'
 Model= require './model'
+FormModel= require './form-model'
 UndoManager= require './undo-manager'
 
 module.exports= {
@@ -9,5 +10,6 @@ module.exports= {
   Collection
   Controller
   Model
+  FormModel
   UndoManager
 }
