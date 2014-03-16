@@ -26,11 +26,17 @@ exports.config =
       joinTo: 'javascripts/app.js'
 
   server:
-    path: "./lib/proxy-server.js"
+    path: "./lib/server-with-proxy"
     # port: 8080
     run: true
 
   plugins:
+    
     react:
       autoIncludeCommentBlock: yes
       harmony: yes
+
+  workers:
+    enabled: true
+    count: 4
+    extensions: ['less', 'styl', 'coffee', 'jsx']

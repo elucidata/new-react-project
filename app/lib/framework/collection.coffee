@@ -14,3 +14,6 @@ module.exports= class Collection extends Backbone.Collection
     # Localstorage
     if @localStorage? and _.isString @localStorage
       @localStorage= new Backbone.LocalStorage @localStorage
+
+  dispose: ->
+    @off()

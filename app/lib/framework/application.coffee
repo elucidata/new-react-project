@@ -25,7 +25,8 @@ patchBackbone= ->
 
 # Class: App
 # Extends <Controller>
-module.exports= class App extends Controller
+module.exports= 
+class App extends Controller
   @instance: null
 
   constructor: ->

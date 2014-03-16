@@ -1,6 +1,6 @@
-Collection = require 'framework/collection'
-Model= require 'framework/model'
-UndoManager= require 'framework/undo-manager'
+Collection = require 'lib/framework/collection'
+Model= require 'lib/framework/model'
+UndoManager= require 'lib/framework/undo-manager'
 
 class User extends Model
 class UserCollection extends Collection

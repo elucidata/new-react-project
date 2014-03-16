@@ -50,6 +50,7 @@ bindRouteEvents= (obj)->
 ###
 module.exports= class Controller
   _.extend @::, Backbone.Events  
+  # _.extend @::, EventEmitter::
   
   appEvents: null
   routes: null

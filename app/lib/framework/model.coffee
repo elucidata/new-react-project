@@ -72,6 +72,8 @@ module.exports= class Model extends Backbone.Model
       else
         (val) -> if val? then @set(name, val) else @get(name)
 
+  dispose: ->
+    @off()
 
 # Helpers
 

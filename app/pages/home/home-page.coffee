@@ -1,12 +1,12 @@
-tag= React.DOM
+{div, h3, p}= React.DOM
 
 # Public: Home page component
 class HomePage extends React.Component
 
   render: ->
-    (tag.div className:"home-page",
-      (tag.h3 null, "Welcome Home")
-      (tag.p null, "HOME PAGE")
+    (div className:"home-page",
+      (h3 null, "Welcome Home")
+      (p null, "HOME PAGE")
     )
 
 module.exports= HomePage.reactify()

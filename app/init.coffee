@@ -3,16 +3,14 @@
 $('html').removeClass('no-js').addClass('js')
 
 require('lib/view-helpers').applyTo this
-
-Application= require 'controller/application'
-
+Application= require 'controllers/application'
 window.app= app= new Application
 
-# This will allow your modules to require('app') to get the Applicaton instance
-# instead of relying on global variables.
-window.require.register 'app', (exp, req, mod)-> mod.exports= app
+# This will allow your modules to require('app') to get the
+# Applicaton instance instead of relying on global variables.
+window.require.register 'app', (e, r, m)-> m.exports= app
 
-# If you want to see all the events fired from app (useful for debugging)
+# If you want to see all the events fired from app
 app.logEvents()
 
 app.addInitializer (opts)->

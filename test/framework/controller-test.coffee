@@ -1,12 +1,10 @@
-Controller = require 'framework/controller'
-Model= require 'framework/model'
-App= require 'framework/app'
+Controller = require 'lib/framework/controller'
+Model= require 'lib/framework/model'
+App= require 'lib/framework/application'
 
 class TestController extends Controller
   appEvents:
     'my:app:event': 'didCall'
-  dataEvents:
-    'change mdl': 'dataChanged'
   initialize: ->
     @eventCount= 0
     @dataChange= no
@@ -51,12 +49,13 @@ describe 'Framework.Controller', ->
     app.trigger('my:app:event')
     expect(@controller.eventCount).to.equal 1
 
-  it 'should support dataEvents', ->
-    expect(@controller.dataChange).to.equal no
-    @controller.mdl.set name:'finished'
-    expect(@controller.dataChange).to.equal yes
 
   # No longer supported:
+
+  # it 'should support dataEvents', ->
+  #   expect(@controller.dataChange).to.equal no
+  #   @controller.mdl.set name:'finished'
+  #   expect(@controller.dataChange).to.equal yes
   
   # it 'should support disposing nested controllers', ->
   #   c1= new TestController

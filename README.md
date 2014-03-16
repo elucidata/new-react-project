@@ -6,10 +6,10 @@ bootstrap, jquery, backbone (for now), ogre-js.
 
 Default cake tasks:
 
-    cake init                 # Initial setup
+    cake init                 # Initialize setup
     cake build                # Builds the app into ./public
-    cake build:dist           # Calls tasks: clean, version:update, build:optimize
-    cake build:optimize       # Builds optimized app into ./public
+    cake build:dist           # Calls tasks: clean, version:update, build:production
+    cake build:production     # Builds optimized app into ./public
     cake build:watch          # Watch ./app and autobuild to ./public on change
     cake build:server         # Starts dev server
     cake clean                # Removes ./public

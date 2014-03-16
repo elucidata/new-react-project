@@ -19,12 +19,12 @@ task 'build', "Builds the app into #{PATH.BUILD}", ->
   brunch 'build'
   echo "Done."
 
-task 'build:dist', 'Calls tasks: clean, version:update, build:optimize', ->
+task 'build:dist', 'Calls tasks: clean, version:update, build:production', ->
   invoke 'clean'
   invoke 'version:update'
-  invoke 'build:optimize'
+  invoke 'build:production'
 
-task 'build:optimize', "Builds optimized app into #{PATH.BUILD}", ->
+task 'build:production', "Builds optimized app into #{PATH.BUILD}", ->
   brunch 'build', '--production'
   echo "Done."
 

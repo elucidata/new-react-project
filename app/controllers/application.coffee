@@ -19,12 +19,12 @@ class Application extends App
     'app:ready': 'onReady'
 
   initialize: ->
-    @state= require 'data/application-state'
+    @state= require './application-state'
     @version= @state.get('app.version')
     @title= @state.get('app.name')
 
   onStart: ->
-    Root= require 'ui/layout/root'
+    Root= require 'layouts/root'
     @root= React.renderComponent Root( @state.get() ), $('#application_root')[0]
     @state.onChange => 
       @root.setProps @state.get()
@@ -46,7 +46,7 @@ class Application extends App
     @setState 'page', current:'home', params:null
   
   route_go404: (path)->
-    @setState 'page', current:'missing', params:(path or location.hash)
+    @setState 'page', current:'system/missing', params:(path or location.hash)
 
 
 

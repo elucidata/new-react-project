@@ -3,6 +3,26 @@ manifest= require 'manifest'
 dataset= ogre or require 'ogre'
 cache= new Cache 'app.state'
 
+defaultAppState= ->
+  app: 
+    name: manifest.name
+    version: manifest.version
+    built: manifest.built
+    ready: no
+
+  page:
+    current: ''
+    params: null
+
+  prefs: loadFromCache 'prefs', 
+    layout: 'sidebar'
+
+  temp: loadFromCache 'temp', 
+    form: null
+
+
+# Helpers
+
 loadFromCache= (key, defaultData)->
   data= cache.get key
   
@@ -27,31 +47,12 @@ saveToCache= (key, overrides)->
 
 
 
-# Just for profiling...
+# Just for profiling... 
 # class ApplicationStateObject
-#   constructor: (data)->
-#     _.extend this, data
+#   constructor: _.extend this, defaultAppState()
+# appState= new ApplicationStateObject
 
-appState= #new ApplicationStateObject
-
-  app: 
-    name: manifest.name
-    version: manifest.version
-    ready: no
-    manifest: manifest
-
-  page:
-    current: ''
-    params: null
-
-  prefs: loadFromCache 'prefs', 
-    layout: 'sidebar'
-
-  temp: loadFromCache 'temp', 
-    form: null
-
-
-appDS= dataset appState, yes
+appDS= dataset defaultAppState(), yes
 
 saveToCache 'prefs'
 saveToCache 'temp'

@@ -1,4 +1,4 @@
-Model = require 'framework/model'
+Model = require 'lib/framework/model'
 
 class User extends Model
   @trackTimestamps()
