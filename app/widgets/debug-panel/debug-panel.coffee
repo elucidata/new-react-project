@@ -48,7 +48,7 @@ class DialogPanel extends React.Component
   renderChildren: (data, path, level)->
     # console.log 'rendering', data
     elems= []
-    for key, i in _.keys(data)
+    for key, i in Object.keys(data)
       try
         # console.log key, data[key]
         val= data[key]
@@ -75,7 +75,7 @@ class DialogPanel extends React.Component
           else
             null
         desc= if dataType is 'object' 
-            (label className:cls, onClick:handler, dataType, " {", _.keys(val).length ,"}")
+            (label className:cls, onClick:handler, dataType, " {", Object.keys(val).length ,"}")
           else if dataType is 'array'
             (label className:cls, onClick:handler, dataType, " [", val.length ,"]")
           else

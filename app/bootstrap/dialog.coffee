@@ -87,8 +87,8 @@ Dialog=do ->
 
     getDialogSettings: (opts={})->
       copts= @type.dialog or @dialog
-      inlineOpts= if copts? then resultsFrom(copts, this) else {} #if @dialog? then  _.result(@, 'dialog') else {}
-      _.defaults opts, inlineOpts, Dialog.mixin.getDialogDefaults()
+      inlineOpts= if copts? then resultsFrom(copts, this) else {} #if @dialog? then  Object.result(@, 'dialog') else {}
+      Object.defaults opts, inlineOpts, Dialog.mixin.getDialogDefaults()
 
     hideDialog: ->
       if _currentModal?

@@ -14,7 +14,7 @@ prefix= do ->
 
 execute= (cmd, el=document)->
   throw new Error("Fullscreen isn't supported by this browser.") unless isSupported
-  cmd = "#{ prefix }#{ _.str.capitalize cmd }" if prefix isnt ''
+  cmd = "#{ prefix }#{ String.capitalize cmd }" if prefix isnt ''
   el[cmd]?()
 
 api=

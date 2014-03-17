@@ -99,8 +99,6 @@ Popover=
         .remove()
 
     _popoverDidHide: (e)->
-      # HACK: Not great
-      # _.delay @_destroyPopover, 250, e
       @popoverDidHide?(e)
       @popoverActive.content.popoverDidHide?(e)
       @_destroyPopover(e)
@@ -167,8 +165,8 @@ Popover=
 
     getPopoverSettings: (opts={})->
       copts= @type.popover or @popover
-      inlineOpts= if copts? then resultsFrom(copts, this) else {} #if @popover? then _.result(@, 'popover') else {}
-      _.defaults opts, inlineOpts, Popover.mixin.getPopoverDefaults()
+      inlineOpts= if copts? then resultsFrom(copts, this) else {} #if @popover? then Object.result(@, 'popover') else {}
+      Object.defaults opts, inlineOpts, Popover.mixin.getPopoverDefaults()
 
     getPopoverDOMNode: ->
       @getPopoverTip()?.get(0)

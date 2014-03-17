@@ -11,7 +11,9 @@ exports.config =
       order:
         # Files in `vendor` directories are compiled before other files
         # even if they aren't specified in order.before.
-        before: []
+        before: [
+          'vendor/scripts/dom-events.js'
+        ]
         after: [
           'test/vendor/scripts/test-helper.js'
         ]
@@ -36,7 +38,7 @@ exports.config =
       autoIncludeCommentBlock: yes
       harmony: yes
 
-  workers:
-    enabled: true
-    count: 4
-    extensions: ['less', 'styl', 'coffee', 'jsx']
+  # workers:
+  #   enabled: true
+  #   count: 4
+  #   extensions: ['less', 'styl', 'coffee', 'jsx']

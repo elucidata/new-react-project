@@ -127,8 +127,8 @@ Panel= React.createClass
           @props.children
         )
 
-    unless _.isEmpty(title)
-      title= (h3 className:'panel-title', title) if _.isString(title)
+    unless type.isEmpty(title)
+      title= (h3 className:'panel-title', title) if type.isString(title)
       title= (div className:'panel-heading', title)
     
     @transferPropsTo(

@@ -1,30 +1,14 @@
 Controller= require './controller'
-# UndoManager= require './undo-manager'
 
-_patched= no
+###
+   Class: App
+    
+  Extends <Controller>
 
-patchBackbone= ->
-  return if _patched
-  origLoadUrl= Backbone.history.loadUrl
+  Variables:
 
-  Backbone.history.loadUrl= (fo)->
-    matched= origLoadUrl.call(Backbone.history, fo)
-    # Only trigger no-match events when testing an actual fragment
-    app.trigger('route:no-match', fo) if fo? and not matched
-    matched
-
-  _patched= yes
-
-
-# Internal class
-# class Navigator
-#   constructor: (@app)->
-#   go: (params...)-> @app.router.cause params...
-#   matches: (params...)-> @app.router.isCaused params...
-#   path: (params...)-> @app.router.getRoute params...
-
-# Class: App
-# Extends <Controller>
+    routes - Route hash
+###
 module.exports= 
 class App extends Controller
   @instance: null
@@ -34,16 +18,14 @@ class App extends Controller
     @app= this
     @_initializers = []
     @started = false
-    # @navigator= new Navigator this
-    # @undoMgr= new UndoManager
     super
-    patchBackbone()
+    bindRouteEvents(@)
     $(window).on('unload', @_windowOnUnload)
 
   addInitializer: (fn) ->
     if @started
       fn.call @, @_startOptions
-      _.extend @, @_startOptions
+      Object.extend @, @_startOptions
     else
       @_initializers.push fn
     @
@@ -51,6 +33,8 @@ class App extends Controller
   start: (options={})->
     @_startOptions = options
     @trigger 'app:initializing', options
+
+    throw new Error "No dispatcher present!" unless @dispatcher?
 
     if @onStart?
       @_initializers.unshift @onStart
@@ -68,11 +52,10 @@ class App extends Controller
           fn.call @, options
           next()
       else
-        _.extend @, options
+        Object.extend @, options
+        @dispatcher.start()
         @started = true
         @trigger 'app:initialized', options
-        # _.defer @trigger, 'app:ready', options
-        # @trigger 'app:ready', options
         setTimeout @trigger.bind(this, 'app:ready', options), 0
 
     next()
@@ -82,13 +65,9 @@ class App extends Controller
 
   # Method: navigate
   navigate: (pathFragment, opts={})-> 
-    @router.navigate pathFragment, opts
-    #@navigator.go params...
+    routie(pathFragment)
 
-  # Method: navigateTo
-  # Same as navigate, but defaults to `trigger:true`
-  navigateTo: (pathFragment, opts={})-> 
-    @router.navigate pathFragment, _.defaults(opts, trigger:yes)
+  navigateTo: @::navigate
 
   log: (args...)->
     return unless @debug
@@ -104,6 +83,7 @@ class App extends Controller
       # @on 'all', @_logEvent
       @trigger= (event, args...)=>
         console.group event
+        # console.debug event, args...
         @origTrigger event, args...
         console.groupEnd event
     else
@@ -118,21 +98,52 @@ class App extends Controller
     @dispose?()
 
   # Method: requireAll
-  # If matching is String, matches via _.startsWith(), if regexp actually calls string.match(re).
+  # If matching is String, matches via s.startsWith(), if regexp actually calls string.match(re).
   requireAll: (matching)->
     paths= []
-    if _.isString matching
-      paths.push(module) for module in window.require.list() when _.str.startsWith(module, matching) 
-    else if _.isRegExp matching
+    if type.isString matching
+      paths.push(module) for module in window.require.list() when module.startsWith(matching) 
+    else if type.isRegExp matching
       paths.push(module) for module in window.require.list() when module.match(matching)
     else
       throw "Must specify a String or RegExp to App#requireAll"
     results= {}
     for path in paths
       lib= require(path)
-      if _.isPlainObject lib
-        _.merge results, lib
+      if type.isObject lib
+        type.merge results, lib
       else
-        name= _.last path.split('/')
+        [..., name]= path.split('/')
         results[name]= lib
     results
+
+
+bindRouteEvents= (app)->
+  return unless app.routes?
+
+  for own route,event of app.routes
+    do (route, event)->
+      routie route, ->
+        app.trigger event, arguments...
+
+
+  # return
+  # for own route,callback of controller.routes
+  #   callback= if type.isFunction callback
+  #       callback.bind(controller)
+  #     else
+  #       if controller[callback]
+  #         controller[callback].bind(controller)
+  #       else
+  #         throw new Error "Method '#{ callback }' not found on controller '#{ String.functionName controller.constructor }'."
+  #   # do (route, callback)->
+  #   routie route, callback
+
+
+  # return  
+  # controller.router or= new Backbone.Router
+  # for own route, event of controller.routes
+  #   do (route, event)->
+  #     controller.router.route route, event, (params...)->
+  #       controller.trigger event, params...
+  # @

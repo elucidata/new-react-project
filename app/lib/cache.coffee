@@ -42,7 +42,7 @@ module.exports= class Cache
     if window.localStorage
       for i in [0..@storage.length]
         key= @storage.key i
-        if _.startsWith key, @prefix
+        if key.startsWith @prefix
           @storage.removeItem key
     else
       @stoage.clear()

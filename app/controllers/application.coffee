@@ -1,25 +1,17 @@
 App= require 'lib/framework/application'
+Dispatcher= require './routes'
+State= require './state'
 
 # Class: Application
 # Your application class, extends <App>
 class Application extends App
-  
-  # FIXME: Udpate app title
-  title: 'Untitled'
-
-  # Property: routes
-  # All the application routes and which appEvents they fire.
-  routes:
-    '*path': 'route:missing'
-    '': 'route:home'
 
   appEvents:
-    'route:home': 'route_goHome'
-    'route:missing': 'route_go404'
     'app:ready': 'onReady'
 
   initialize: ->
-    @state= require './application-state'
+    @dispatcher= new Dispatcher
+    @state= (new State).dataset
     @version= @state.get('app.version')
     @title= @state.get('app.name')
 
@@ -41,13 +33,6 @@ class Application extends App
 
   getCursor: (key, editable=no)->
     @state.cursor key, not editable
-
-  route_goHome: ->
-    @setState 'page', current:'home', params:null
-  
-  route_go404: (path)->
-    @setState 'page', current:'system/missing', params:(path or location.hash)
-
 
 
 module.exports= Application #new Application

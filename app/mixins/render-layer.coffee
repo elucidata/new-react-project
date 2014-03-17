@@ -6,7 +6,7 @@ module.exports=
     # Appending to the body is easier than managing the z-index of everything on the page.
     # It's also better for accessibility and makes stacking a snap (since components will stack
     # in mount order).
-    {tag, className}= _.defaults {}, (@type.layer or {}), tag:'div', className:'layer'
+    {tag, className}= Object.defaults {}, (@type.layer or {}), tag:'div', className:'layer'
     @_targetLayer= document.createElement tag
     @_targetLayer.className= className
     document.body.appendChild @_targetLayer

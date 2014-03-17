@@ -1,5 +1,12 @@
 
+
 helpers= 
+
+  pp: (obj)->
+    if arguments.length > 1
+      JSON.stringify arguments, null, 2
+    else
+      JSON.stringify obj, null, 2
 
   shortDate: (date)->
     @formatDate date, 'l'
@@ -21,20 +28,19 @@ helpers=
       block= args[0]
     else
       [opts, block]= args
-    _.defaults opts, 
+    Object.defaults opts, 
       gfm: yes
       smartypants: yes
       smartLists: yes
       tables: yes
     @safe marked block(), opts
 
-applyTo= (target)->
-  _.defaults(target, helpers)
+applyTo= (target)-> Object.defaults(target, helpers)
 
 module.exports= {helpers, applyTo}
 
 
-React.Helpers= _.extend {}, React.addons,
+React.Helpers= Object.extend {}, React.addons,
   _: null
   __: null
   nbsp: '\u00a0'
