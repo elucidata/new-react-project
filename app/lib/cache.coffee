@@ -1,6 +1,11 @@
 # v0.1.1
 
-module.exports= class Cache
+###
+  Public: Abstraction over DOMStorage, includes 
+  `MemoryStorage` adaptor for unsupported browsers.
+###
+module.exports=
+class Cache
 
   constructor: (@prefix='cache', storage='local')->
     # alert "No native JSON support!" unless window.JSON
@@ -17,9 +22,7 @@ module.exports= class Cache
   set: (name, value) ->
     attrs=
       if arguments.length is 2
-        obj={}
-        obj[name]= value
-        # console.log 'name,value', name, value, obj
+        (obj={})[name]= value
         obj
       else
         name

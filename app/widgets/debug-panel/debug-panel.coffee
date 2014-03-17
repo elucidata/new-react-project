@@ -3,6 +3,9 @@
 {Icon, Dialog, Modal, ModalBody, Row, Col}= require 'bootstrap'
 sizeOf= require 'lib/size-of'
 
+###
+  Public: A debug panel (as a Bootstrap Modal)
+###
 class DialogPanel extends React.Component
 
   mixins: [ Dialog.mixin ]
@@ -106,44 +109,3 @@ class DialogPanel extends React.Component
     elems
 
 module.exports= DialogPanel.reactify()
-
-
-# Tree= React.createClass
-#   displayName: 'Tree'
-
-#   render: ->
-#     (ul className:'tree',
-#       (Node label:@props.label, source:@props.source)
-#       # (label __, @props.label)
-#       # (ul className:'children',
-        
-#       # )
-#     )
-
-# Node= React.createClass
-#   displayName: 'Node'
-  
-#   render: ->
-#     (li className:'node',
-#       (label __, @props.label)
-#       (do @renderValue)
-#     )
-
-#   renderValue: ->
-#     source= @props.source
-#     title= @props.label
-#     dataType= type source
-#     if dataType is 'array'
-#       (span className:'array', 'array')
-#     else if dataType is 'object'
-#       # (span className:'object', 'object')
-#       (ul className:'children object',
-#         (do ->
-#           for key, val of source
-#             (Node key:key, label:title source:source)
-#         )
-#       )
-#     else
-#       (span vlassName:"value #{ dataType }", String(@props.source))
-
-

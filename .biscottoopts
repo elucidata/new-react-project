@@ -1,0 +1,8 @@
+--name       "Untitled"
+--readme     ReadMe.md
+--title      "Untitled App Documentation"
+--private
+--output-dir ./doc/api
+./app
+-
+docs/app-state-tree.md

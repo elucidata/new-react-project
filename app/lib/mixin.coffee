@@ -14,9 +14,9 @@
 #     constructor: ->
 #       @log 'stuff'
 #
-module.exports =
-
+module.exports=
 class Mixin
+  
   @mixin: (constructor) ->
     @extend(constructor.prototype)
     for name, value of this

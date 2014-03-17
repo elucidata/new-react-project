@@ -69,17 +69,12 @@ class RootPage extends React.Component
         @transferPropsTo( page {} )
       )
       (footer className:"container",
-        # (div className:'debug',
-          
-        # )
         (p className:"text-muted", "#{ _copy } Me, nowishly.")
       )
     )
 
-  renderNavButton: (label, page, path="#/#{ page }")->
-    (Button className:'', href:path, label)
-  
   navClasses: (page)->
     return if page is @props.page.current then 'active' else ''
+
 
 module.exports= RootPage.reactify()

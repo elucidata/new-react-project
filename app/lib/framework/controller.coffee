@@ -1,5 +1,5 @@
 ###
-  Class: Controller
+  Public: Base Controller class
   
   Methods:
     
@@ -11,12 +11,12 @@
     appEvents - <App> events hash { "app:event": "method_name" }
 
 ###
-module.exports= class Controller
-  # Object.extend @::, Backbone.Events  
+module.exports= 
+class Controller
+
   Object.extend @::, EventEmitter::
   
   appEvents: null
-  routes: null
   
   constructor: (options={})->
     Object.extend @, options
@@ -34,16 +34,20 @@ module.exports= class Controller
   trigger: @::emit
   off: @::removeListener
 
+
+  navigate: (pathFragment, opts={})-> 
+    @app.dispatcher.dispatch pathFragment
+
+  navigateTo: @::navigate
+  dispatch: @::navigate
+
   dispose: ->
     unbindAppEvents(this, @app)
-    @data[key].dispose() for key,val of @data if @data?
     @removeAllListeners()
 
 
 bindAppEvents= (controller, app)->
-  # console.log "bindAppEvents"
   return unless controller.appEvents?
-  # console.log " - here we go!"
   for own event, method of controller.appEvents
     fn= if type.isString(method)
       controller[method].bind controller
@@ -52,7 +56,6 @@ bindAppEvents= (controller, app)->
     else
       throw new Error "Event handler must be a String or Function (for event: #{event})"
     throw new Error "Event handler not found (for event: #{event})" unless fn?
-    # console.log " .", event, fn #, app
     app.on(event,fn)
   @
 

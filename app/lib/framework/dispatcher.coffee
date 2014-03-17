@@ -9,7 +9,6 @@ class Dispatcher extends Controller
       handler= event 
       event= null
 
-    # console.log "-> route:", pp(path), '->', pp(event)
     _routes.push {path, event, handler}
 
   initialize: ->
@@ -17,10 +16,10 @@ class Dispatcher extends Controller
 
   start: ->
     return this if @_started
-    # Build routes!
     self= @
     routeHash= {}
     
+    # Build routes!
     for {path, event, handler} in _routes
       do (path, event, handler)->
         routeHandler= ->
