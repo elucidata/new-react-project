@@ -7,5 +7,3 @@ module.exports= {
 }
 
 Array.without or= without
-
-# Array::without or= (target)-> without this, target

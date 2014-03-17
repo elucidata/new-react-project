@@ -6,7 +6,6 @@ global.PATH=
   GEN:    "./lib/generators"
   LIB:    "./lib"
   TASKS:  "./lib/tasks"
-  CONFIG: "./lib/brunch-config.coffee"
 
 require 'coffee-script/register'
 require 'shelljs/global'

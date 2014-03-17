@@ -3,7 +3,32 @@
 Brunch project skeleton for use with React.js that includes react-brunch, coffee-script,
 bootstrap, jquery, ogre-js.
 
-Default cake tasks:
+## Getting Started
+
+```bash
+brunch new gh:elucidata/new-react-project my-nifty-app
+cd my-nifty-app
+cake init
+```
+
+**Note:** If you don't have CoffeeScript installed globally, that last line will need to look like this: 
+
+```bash
+./node_modules/.bin/cake init
+```
+
+If you don't want CoffeeScript installed globally, I'd add the following to your `.bash_profile`:
+
+```bash
+export PATH=$PATH:./node_modules/.bin
+```
+
+Then you can just call `cake` and it will use the local version.
+
+Speaking of which...
+
+## Default Cake Tasks
+
 
     cake init                 # Initialize setup
     cake build                # Builds the app into ./public
@@ -26,4 +51,3 @@ Default cake tasks:
     cake version:update       # Updates all the files that contain version info
 
       -f, --force        (ver) Force updating for version files
-
