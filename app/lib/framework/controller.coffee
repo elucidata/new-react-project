@@ -37,7 +37,7 @@ module.exports= class Controller
   dispose: ->
     unbindAppEvents(this, @app)
     @data[key].dispose() for key,val of @data if @data?
-    @off()    
+    @removeAllListeners()
 
 
 bindAppEvents= (controller, app)->

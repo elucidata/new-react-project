@@ -1,5 +1,4 @@
 Controller = require 'lib/framework/controller'
-Model= require 'lib/framework/model'
 App= require 'lib/framework/application'
 
 class TestController extends Controller
@@ -8,7 +7,6 @@ class TestController extends Controller
   initialize: ->
     @eventCount= 0
     @dataChange= no
-    @mdl= new Model name:'start'
   didCall: ->
     @eventCount += 1
   dataChanged: ->

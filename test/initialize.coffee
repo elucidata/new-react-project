@@ -1,10 +1,11 @@
+require('lib/js-ext')
 
 tests = []
 framework_tests = []
 
 for module in window.require.list()
-  if _.str.endsWith module, '-test'
-    if _.str.startsWith module, 'test/framework/'
+  if module.endsWith '-test'
+    if module.startsWith 'test/framework/'
       framework_tests.push module
     else
       tests.push module 

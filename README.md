@@ -1,8 +1,7 @@
-new-react-project
-=================
+# Base React Projuct
 
-New brunch project for use with React.js. Includes react-brunch, coffee-script,
-bootstrap, jquery, backbone (for now), ogre-js.
+Brunch project skeleton for use with React.js that includes react-brunch, coffee-script,
+bootstrap, jquery, ogre-js.
 
 Default cake tasks:
 
