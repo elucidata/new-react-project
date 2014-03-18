@@ -1,13 +1,7 @@
 Controller= require './controller'
 
 ###
-  Public: Base application class
-    
-  Extends <Controller>
-
-  Variables:
-
-    routes - Route hash
+  Public: Base application class. Extends {Controller}
 ###
 module.exports= 
 class App extends Controller

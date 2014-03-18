@@ -1,4 +1,4 @@
-Dispatcher= require 'lib/framework/dispatcher'
+Dispatcher= require 'lib/base/dispatcher'
 
 class Routes extends Dispatcher
 

@@ -1,7 +1,11 @@
 Controller= require './controller'
 
+###
+  Public: Dispatches routes and app events.
+###
 class Dispatcher extends Controller
   _routes= []
+
 
   @route: ->
     [path, event, handler]= arguments

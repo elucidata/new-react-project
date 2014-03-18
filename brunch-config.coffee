@@ -1,4 +1,6 @@
-exports.config =
+require('dotenv').load()
+
+exports.config=
 
   # See http://brunch.io/#documentation for docs.
   files:
@@ -42,3 +44,24 @@ exports.config =
   #   enabled: true
   #   count: 4
   #   extensions: ['less', 'styl', 'coffee', 'jsx']
+
+  keyword:
+    filePattern: /\.(js|css|html|txt)$/
+
+    # Extra files to process which `filePattern` wouldn't match
+    # extraFiles: [
+    #   'public/version.txt'
+    # ]
+
+    # By default keyword-brunch has these keywords: (using information from package.json)
+    #     {!version!}, {!name!}, {!date!}, {!timestamp!}
+    map:
+      mode: 'dev'
+      built: -> (new Date).toISOString()
+
+  overrides:
+    production:
+      keyword:
+        map:
+          mode: 'production'
+

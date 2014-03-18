@@ -3,12 +3,11 @@
 types= React.PropTypes
 
 
-# Class: Bootstrap
+# Public: Bootstrap
 # Simple Bootstrap Grid Components
 # INCOMPLETE!
 
-# Class: Row
-# <Row> ... </Row>
+# Public: Row
 Row= React.createClass
   displayName: 'Row'
   
@@ -17,7 +16,7 @@ Row= React.createClass
       (div className:"row", @props.children)
     )
 
-# Class: Column
+# Public: Column
 # <Column md="5" mdOffset="3"> ... </Column>
 Column= React.createClass
   displayName: 'Column'
@@ -38,8 +37,11 @@ Column= React.createClass
       (div className:@_buildClassNames(), @props.children)
     )
 
-# Class: Alert
-# <Alert dismissable={Boolean:false} type={String:'default'} onClose={Function}> ... </Alert>
+# Public: Alert
+#
+# dismissable - {Boolean}
+# type - {String}
+# onClose - {Function}
 Alert= React.createClass
   displayName: 'Alert'
 

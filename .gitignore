@@ -35,3 +35,6 @@ bower_components/
 
 # API Docs
 docs/api/
+
+# DotEnv
+.env

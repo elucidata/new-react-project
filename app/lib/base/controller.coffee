@@ -1,14 +1,8 @@
 ###
   Public: Base Controller class
   
-  Methods:
-    
-    initialize - do your thing here
-    dispose - stuff
-
-  Variables:
-
-    appEvents - <App> events hash { "app:event": "method_name" }
+    appEvents - {App} events hash
+                :app_event - Method name {String}
 
 ###
 module.exports= 

@@ -1,9 +1,8 @@
-App= require 'lib/framework/application'
+App= require 'lib/base/application'
 Dispatcher= require './routes'
 State= require './state'
 
-# Class: Application
-# Your application class, extends <App>
+# Public: Your application class, extends {App}
 class Application extends App
 
   appEvents:
@@ -27,9 +26,13 @@ class Application extends App
   getState: (key, opts)->
     @state.get key, opts
 
+  get: @::getState
+
   setState: (key, data)->
     @state.set key, data
     this
+
+  set: @::setState
 
   getCursor: (key, editable=no)->
     @state.cursor key, not editable

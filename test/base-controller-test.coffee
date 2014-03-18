@@ -1,5 +1,5 @@
-Controller = require 'lib/framework/controller'
-App= require 'lib/framework/application'
+Controller = require 'lib/base/controller'
+App= require 'lib/base/application'
 
 class TestController extends Controller
   appEvents:

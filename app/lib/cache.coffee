@@ -8,15 +8,12 @@ module.exports=
 class Cache
 
   constructor: (@prefix='cache', storage='local')->
-    # alert "No native JSON support!" unless window.JSON
     @storage=
       if storage is 'local' and window.localStorage
-        # console?.log "Using LocalStorage", window.localStorage
         window.localStorage
       else if storage is 'session' and window.sessionStorage
         window.sessionStorage
       else
-        # console?.log "Using MemoryStorage"
         new MemoryStorage
 
   set: (name, value) ->
@@ -27,7 +24,6 @@ class Cache
       else
         name
     for own key,val of attrs
-      # console.log 'key,val', key, val
       @storage.setItem @_keyName(key), JSON.stringify(val)
     attrs
 

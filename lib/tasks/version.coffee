@@ -28,6 +28,7 @@ task 'version', 'Prints current app version', ->
   echo package_version()
 
 
+# TODO: Transition cake version:update to using mversion
 option '-f', '--force', "(ver) Force updating for version files"
 task 'version:update', 'Updates all the files that contain version info', (options)->
   ver= package_version()
@@ -42,6 +43,6 @@ task 'version:update', 'Updates all the files that contain version info', (optio
     update_json './bower.json', (bwr)->
       bwr.version= new_ver
 
-    update_json './app/manifest.json', (info)->
-      info.version= new_ver
-      info.built= (new Date()).toString()
+    # update_json './app/manifest.json', (info)->
+    #   info.version= new_ver
+    #   info.built= (new Date()).toString()

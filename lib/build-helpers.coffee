@@ -19,4 +19,11 @@ global.exec_loud= (cmd, opts={})->
   echo cmd
   exec cmd, opts
 
-# log "LOADED"
+global.git_ensure_clean= (exitOnDirty=yes)->
+  result= exec("git diff --shortstat 2> /dev/null | tail -n1", silent:yes).output
+  if result isnt ""
+    if exitOnDirty
+      console.log "\n  There are uncommited changes in this working directory!\n  Please check in changes to proceed.\n"
+      process.exit(1) 
+    return no
+  return yes

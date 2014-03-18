@@ -1,16 +1,17 @@
-Controller= require 'lib/framework/controller'
+Controller= require 'lib/base/controller'
 Cache= require 'lib/cache'
-manifest= require 'manifest'
 dataset= ogre or require 'ogre'
 cache= new Cache 'app.state'
 
 class State extends Controller
   @defaultAppState: ->
     app: 
-      name: manifest.name
-      version: manifest.version
-      built: manifest.built
+      key: Number('{!timestamp!}').toString(36)
       ready: no
+      name: '{!name!}'
+      version: '{!version!}'
+      built: '{!date!}'
+      mode: '{!mode!}'
 
     page:
       current: ''
@@ -42,7 +43,9 @@ loadFromCache= (key, defaultData)->
 saveToCache= (appDS, key, overrides)->
   saveIt= (k)->
     data= appDS.get(key)
-    app.log "... caching change to", k, "in cache", "fp.state.#{key}" #, data, '(overriding', overrides, ')'
+    
+    if '{!mode!}' is 'dev' # this should get stripped from production builds
+      app.log "... caching change to", k, "in cache", "fp.state.#{key}" #, data, '(overriding', overrides, ')'
 
     saveData= if overrides? and type.isObject data
         Object.extend Object.clone(data), overrides 

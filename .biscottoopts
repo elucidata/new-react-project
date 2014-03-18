@@ -2,7 +2,7 @@
 --readme     ReadMe.md
 --title      "Untitled App Documentation"
 --private
---output-dir ./doc/api
+--output-dir ./docs/api
 ./app
 -
-docs/app-state-tree.md
+docs/app-state-graph.md

@@ -6,7 +6,7 @@ LoadingPage= require 'pages/system/loading'
 DebugPanel= require 'widgets/debug-panel'
 
 # Public: Primary application layout.
-# Main root element of page. It will change out any sub-pages based on the {ApplicationState}.
+# Main root element of page. It will change out any sub-pages based on the {State}.
 class RootPage extends React.Component
 
   mixins: [
