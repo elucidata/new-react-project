@@ -1,7 +1,6 @@
 # Base React Project
 
-Brunch project skeleton for use with React.js that includes react-brunch, coffee-script,
-bootstrap, jquery, ogre-js.
+Brunch project skeleton for use with React.js that includes react-brunch, react-tags-brunch, coffee-script, react-coffee, bootstrap, jquery, ogre-js.
 
 ## Getting Started
 

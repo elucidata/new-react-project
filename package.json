@@ -27,6 +27,7 @@
     "chai": "~1.9.0",
     "biscotto": "^2.1.1",
     "keyword-brunch": "^1.7.2",
+    "react-tags-brunch": "^1.7.1",
     "dotenv": "^0.2.5"
   }
 }

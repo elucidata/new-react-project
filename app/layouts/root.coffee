@@ -1,6 +1,6 @@
-{div, h1, small, footer, p}= tag= React.DOM
 {Icon, IconStack, Button, Modal}= require 'bootstrap'
 {__, _copy}= React.Helpers
+
 MissingPage= require 'pages/system/missing'
 LoadingPage= require 'pages/system/loading'
 DebugPanel= require 'widgets/debug-panel'
@@ -47,29 +47,29 @@ class RootPage extends React.Component
   render: ->
     page= @state.page
 
-    (div className:"app-root",
-      (div className:"container",
-        (div className:"page-header",
-          (div className:"btn-group btn-group-sm pull-right",
+    (@div className:"app-root",
+      (@div className:"container",
+        (@div className:"page-header",
+          (@div className:"btn-group btn-group-sm pull-right",
             (Button className:@navClasses('home'), href:"#/", "Home")
             (Button className:@navClasses('system/missing'), href:"#/anything", title:"This should trigger the 404 handler...", "Missing Link")
             (Button onClick:@actionShowDebugPanel,
               (Icon fa:'bug')
             )
           )
-          (h1 null,
+          (@h1 null,
             (IconStack null,
               (Icon className:"app-icon fa-stack-2x", fa:"certificate")
               (Icon className:"fa-stack-1x fa-inverse", fa:"camera")
             )
             (@props.app.name)
-            (small className:"app-version", "v#{ @props.app.version }")
+            (@small className:"app-version", "v#{ @props.app.version }")
           )
         )
         @transferPropsTo( page {} )
       )
-      (footer className:"container",
-        (p className:"text-muted text-right", "#{ @props.app.name } v#{ @props.app.version }")
+      (@footer className:"container",
+        (@p className:"text-muted text-right", "#{ @props.app.name } v#{ @props.app.version }")
       )
     )
 

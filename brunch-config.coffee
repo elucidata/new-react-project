@@ -40,6 +40,9 @@ exports.config=
       autoIncludeCommentBlock: yes
       harmony: yes
 
+    reactTags:
+      verbose: yes
+
   # workers:
   #   enabled: true
   #   count: 4

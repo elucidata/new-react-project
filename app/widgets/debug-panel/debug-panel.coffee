@@ -1,4 +1,3 @@
-{h3, div, label, ul, li, span, code, pre, small}= React.DOM
 {__, classSet}= React.Helpers
 {Icon, Dialog, Modal, ModalBody, Row, Col}= require 'bootstrap'
 sizeOf= require 'lib/size-of'
@@ -32,17 +31,17 @@ class DialogPanel extends React.Component
       (ModalBody className:'debug-graph', style:{ maxHeight:maxHeight, overflow:'auto' },
         (Row __,
           (Col xs:'8',
-            (h3 style:{ marginTop:0 }, 
+            (@h3 style:{ marginTop:0 }, 
               "App.State Graph"
-              (small __, " ~#{ sizeOf data  } in memory")
+              (@small __, " ~#{ sizeOf data  } in memory")
             )
-            (ul __,
+            (@ul __,
              (@renderChildren data, '', 1)
             )
           )
           (Col xs:'4',
-            (h3 style:{ marginTop:0 }, "Listeners")
-            (pre className:'listener-summary', app.state._listenerSummary())
+            (@h3 style:{ marginTop:0 }, "Listeners")
+            (@pre className:'listener-summary', app.state._listenerSummary())
           )
         )
       )
@@ -70,7 +69,7 @@ class DialogPanel extends React.Component
         cls= "#{ clsx } #{ dataType }"
         children= if (dataType is 'object' or dataType is 'array') and expand
             # (Node source:val)
-            (ul __, @renderChildren(val, childPath, level + 1))
+            (@ul __, @renderChildren(val, childPath, level + 1))
           else
             null
         handler= if hasChildren
@@ -78,27 +77,27 @@ class DialogPanel extends React.Component
           else
             null
         desc= if dataType is 'object' 
-            (label className:cls, onClick:handler, dataType, " {", Object.keys(val).length ,"}")
+            (@label className:cls, onClick:handler, dataType, " {", Object.keys(val).length ,"}")
           else if dataType is 'array'
-            (label className:cls, onClick:handler, dataType, " [", val.length ,"]")
+            (@label className:cls, onClick:handler, dataType, " [", val.length ,"]")
           else
-            (label className:cls, String(val))
+            (@label className:cls, String(val))
         toggle= if hasChildren
           icon= if expand then 'angle-down' else 'angle-right'
-          (span className:'toggler',
+          (@span className:'toggler',
             (Icon fa:icon, onClick:handler)
           )
         else
-          (span className:'toggler',
+          (@span className:'toggler',
             ' '
           )
 
-        item= (li 
+        item= (@li 
           key:"#{ level }-#{ key }"
           className:cls
-          (div className:'props', onClick:handler,
+          (@div className:'props', onClick:handler,
             (toggle)
-            (code __, key)
+            (@code __, key)
             (desc)
           )
           (children)
