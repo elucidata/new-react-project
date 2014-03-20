@@ -69,7 +69,7 @@ class RootPage extends React.Component
         @transferPropsTo( page {} )
       )
       (footer className:"container",
-        (p className:"text-muted", "#{ _copy } Me, nowishly.")
+        (p className:"text-muted text-right", "#{ @props.app.name } v#{ @props.app.version }")
       )
     )
 

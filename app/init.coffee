@@ -16,7 +16,7 @@ window.app= app= new Application
 window.require.register 'app', (e,r,m)-> m.exports= app
 
 # If you want to see all the events fired from app
-app.logEvents()
+# app.logEvents()
 
 app.addInitializer (opts)->
   # Do some initialization stuff here...
