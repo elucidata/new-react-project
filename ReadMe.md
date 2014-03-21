@@ -50,3 +50,8 @@ Speaking of which...
     cake version:update       # Updates all the files that contain version info
 
       -f, --force        (ver) Force updating for version files
+
+
+## IE 8
+
+For IE 8 support, you'll need to update `bower.json` to reference `"jquery": "1.1.x"` instead of `"jquery": ">=2.0",`. That's it.
