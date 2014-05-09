@@ -29,7 +29,7 @@ task 'build:production', "Builds optimized app into #{PATH.BUILD}", ->
   echo "Done."
 
 task 'build:watch', "Watch #{PATH.APP} and autobuild to #{PATH.BUILD} on change", ->
-  spawn_brunch 'watch', '--server'
+  spawn_brunch 'watch'
 
 task 'build:server', "Starts dev server", ->
   spawn_brunch 'watch', '--server'

@@ -44,7 +44,7 @@ bindAppEvents= (controller, app)->
   return unless controller.appEvents?
   for own event, method of controller.appEvents
     fn= if type.isString(method)
-      controller[method].bind controller
+      controller[method]?.bind controller
     else if type.isFunction(method)
       method
     else
